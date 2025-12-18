@@ -16,12 +16,12 @@ namespace PlaywrightTestExamples
 
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false
+                Headless = bool.Parse(TestContext.Parameters["Headless"] ?? "false") 
             });
 
             _page = await _browser.NewPageAsync();
 
-            await _page.GotoAsync(Environments.GetProductionName());
+            await _page.GotoAsync(TestContext.Parameters["Environment"] ?? "https://playwright.dev/");
         }
 
         [OneTimeTearDown]
