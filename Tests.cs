@@ -38,29 +38,12 @@ namespace PlaywrightTestExamples
 
         [Test]
         [Category("UI Playwright automation test.")]
-        public async Task DynamicIdTest()
-        {
-            await ClickLinkByText(Strings.DynamicId);
-           
-        }
-
-        [Test]
-        [Category("UI Playwright automation test.")]
         public async Task ClassAttributeTest()
         {
             await ClickLinkByText(Strings.ClassAttribute);
            
         }
 
-
-        [Test]
-        [Category("Demo test.")]
-        [Ignore("Ignored for demonstration.")]
-        [Description("Just a small tests that demostrate IGNORE annotation.")]
-        public async Task IgnoredTest()
-        {
-            Console.WriteLine("You will not see this message ))).");
-        }
 
         [OneTimeTearDown]
         public async Task TearDown()
