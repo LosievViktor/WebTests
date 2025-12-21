@@ -28,8 +28,8 @@ namespace PlaywrightTestExamples.Tests
             _playwright.Dispose();
         }
 
-        public async Task LoadPage(string url) =>
-            await _page.GotoAsync(TestContext.Parameters["Environment"] ?? "http://uitestingplayground.com/");
+        public async Task LoadMainPage() =>
+            await _page.GotoAsync(TestContext.Parameters["Environment"]);
 
         public async Task ClickLinkByText(string linkText) => 
             await _page.GetByRole(AriaRole.Link, new() { Name = linkText }).ClickAsync();
