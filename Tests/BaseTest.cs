@@ -1,0 +1,40 @@
+﻿using Microsoft.Playwright;
+
+namespace PlaywrightTestExamples.Tests
+{
+    public class BaseTest
+    {
+        private IPlaywright _playwright;
+        private IBrowser _browser;
+        public IPage _page;
+
+        [OneTimeSetUp]
+        public async Task SetUp()
+        {
+            _playwright = await Playwright.CreateAsync();
+
+            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            {
+                Headless = bool.Parse(TestContext.Parameters["Headless"] ?? "false")
+            });
+
+            _page = await _browser.NewPageAsync();
+        }
+
+        [OneTimeTearDown]
+        public async Task TearDown()
+        {
+            await _browser.CloseAsync();
+            _playwright.Dispose();
+        }
+
+        public async Task LoadPage(string url) =>
+            await _page.GotoAsync(TestContext.Parameters["Environment"] ?? "http://uitestingplayground.com/");
+
+        public async Task ClickLinkByText(string linkText) => 
+            await _page.GetByRole(AriaRole.Link, new() { Name = linkText }).ClickAsync();
+
+        public async  Task isPageLoaded(string headerText) =>
+            await Assertions.Expect(_page.Locator("h3")).ToHaveTextAsync(headerText);
+    }
+}

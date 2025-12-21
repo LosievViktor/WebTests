@@ -2,7 +2,7 @@
 <RunSettings>
   <!-- Parameters available to tests via TestContext -->
   <TestRunParameters>
-    <Parameter name="Headless" value="true" />
+    <Parameter name="Headless" value="false" />
     <Parameter name="Environment" value="http://uitestingplayground.com/" />
   </TestRunParameters>
 </RunSettings>
