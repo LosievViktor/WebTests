@@ -1,6 +1,5 @@
-using Microsoft.Playwright;
 using PlaywrightTestExamples.Pages;
-using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -10,6 +9,7 @@ namespace PlaywrightTestExamples.Tests
         string webUrl = TestContext.Parameters["Environment"];
 
         [Test]
+        [Description("This test go to web site and visit each chapter link.")]
         [TestCaseSource(typeof(MainPage), nameof(MainPage.Links))]
         public async Task MainPageLinksTest(string pageName)
         {
