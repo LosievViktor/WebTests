@@ -9,12 +9,12 @@ namespace PlaywrightTestExamples.Tests
 
         [Test]
         [Description("This test go to web site and visit each chapter link.")]
-        [TestCaseSource(typeof(MainPage), nameof(MainPage.Links))]
+        [TestCaseSource(typeof(Strings), nameof(Strings.Links))]
         public async Task MainPageLinksTest(string pageName)
         {
             await LoadMainPage();
             await ClickLinkByText(pageName);
-            if (pageName == Pages.Strings.LoadDelay)
+            if (pageName == Strings.LoadDelay)
             
                 await isPageLoaded(pageName+"s");
            
@@ -27,7 +27,7 @@ namespace PlaywrightTestExamples.Tests
         public async Task MainPageAttributes()
         {
             await LoadMainPage();
-            await Assertions.Expect(_page).ToHaveTitleAsync(MainPage.PageTitle);
+            await Assertions.Expect(_page).ToHaveTitleAsync(Strings.PageTitle);
         }
     }
 }

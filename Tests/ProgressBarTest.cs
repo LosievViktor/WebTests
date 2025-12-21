@@ -1,4 +1,4 @@
-﻿using PlaywrightTestExamples.Strings;
+﻿using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -10,8 +10,8 @@ namespace PlaywrightTestExamples.Tests
         public async Task ProgressTest()
         {
             await LoadMainPage();
-            await ClickLinkByText(Pages.Strings.ProgressBar);
-            await isPageLoaded(Pages.Strings.ProgressBar);
+            await ClickLinkByText(Strings.ProgressBar);
+            await isPageLoaded(Strings.ProgressBar);
 
             await _page.Locator(Locators.btnStart).ClickAsync();
             while (GetValueOfProgressBarAsync().Result < 75) Thread.Sleep(1);

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Playwright;
-using PlaywrightTestExamples.Strings;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -25,7 +25,7 @@ namespace PlaywrightTestExamples.Tests
             await LogIn(_login, _password);
 
             await Assertions.Expect(_page.Locator(Locators.lblStatus))
-                .ToHaveTextAsync($"{Pages.Strings.WelcomeUserMessage} {_login}!");  
+                .ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
         }
 
         [Test]
@@ -37,13 +37,13 @@ namespace PlaywrightTestExamples.Tests
             await LogIn(_login, _wrongPassword);
                      
             await Assertions.Expect(_page.Locator(Locators.lblStatus))
-                .ToHaveTextAsync(Pages.Strings.WrongPasswordMessage);
+                .ToHaveTextAsync(Strings.WrongPasswordMessage);
         }
 
         private async Task LoadSampleAppPage() {
             await LoadMainPage();
-            await ClickLinkByText(Pages.Strings.SampleApp);
-            await isPageLoaded(Pages.Strings.SampleApp);
+            await ClickLinkByText(Strings.SampleApp);
+            await isPageLoaded(Strings.SampleApp);
         }
 
         private async Task LogIn(string user, string pass) 

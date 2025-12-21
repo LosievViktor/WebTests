@@ -1,5 +1,5 @@
 ﻿using Microsoft.Playwright;
-using PlaywrightTestExamples.Strings;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -7,7 +7,6 @@ namespace PlaywrightTestExamples.Tests
     public sealed class FileUploadTest:BaseTest
     {
         private const string _file = "..\\..\\..\\Resources\\file.txt";
-        private const string _wrongFile = "..\\..\\..\\Resources\\file.bbb";
 
         [Test]
         [Description("This test go to web site and test File Upload via Drag and Drop.")]
@@ -15,8 +14,8 @@ namespace PlaywrightTestExamples.Tests
         {
             await LoadMainPage();
 
-            await ClickLinkByText(Pages.Strings.FileUpload);
-            await isPageLoaded(Pages.Strings.FileUpload);
+            await ClickLinkByText(Strings.FileUpload);
+            await isPageLoaded(Strings.FileUpload);
 
             var frame = _page.FrameLocator(Locators.iFrame);
 
@@ -27,7 +26,7 @@ namespace PlaywrightTestExamples.Tests
             await fileInput.SetInputFilesAsync(_file);
 
             await Assertions.Expect(_page.FrameLocator(Locators.iFrame)
-                .Locator("p", new() { HasText = "1 file(s) selected" }))
+                .Locator("p", new() { HasText =  Strings.MessageOfUpload}))
                 .ToBeVisibleAsync();
 
         }

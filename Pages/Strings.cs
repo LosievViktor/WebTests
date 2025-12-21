@@ -2,6 +2,33 @@
 {
     public sealed class Strings
     {
+        public static IEnumerable<string> Links => new[]
+        {
+                DynamicId,
+                ClassAttribute,
+                HiddenLayers,
+                LoadDelay,
+                AjaxData,
+                ClientSideDelay,
+                Click,
+                TextInput,
+                Scrollbars,
+                DynamicTable,
+                VerifyText,
+                ProgressBar,
+                Visibility,
+                SampleApp,
+                MouseOver,
+                NonBreakingSpace,
+                OverlappedElement,
+                ShadowDom,
+                Alerts,
+                FileUpload,
+                AnimatedButton,
+                DisabledInput,
+                AutoWait
+        };
+
         public const string PageTitle = "UI Test Automation Playground";
 
         public const string Title = "UI Test Automation Playground";
@@ -31,5 +58,26 @@
 
         public const string WrongPasswordMessage = "Invalid username/password";
         public const string WelcomeUserMessage = "Welcome,";
+
+        public const string MessageOfUpload = "1 file(s) selected";
+    }
+
+    public sealed class Locators
+    {
+        // Sample App page locators
+        public const string txtLogin = "[name='UserName']";
+        public const string txtPassword = "[name='Password']";
+        public const string btnLogin = "#login";
+        public const string lblStatus = "#loginstatus";
+
+        // Progress Bar page locators
+        public const string btnStart = "#startButton";
+        public const string btnStop = "#stopButton";
+        public const string ProgressBar = "#progressBar";
+        public const string ProgressBarValue = "aria-valuenow";
+
+        // File Upload page locators
+        public const string iFrame = "iframe";
+        public const string inputFile = "#browse";
     }
 }
