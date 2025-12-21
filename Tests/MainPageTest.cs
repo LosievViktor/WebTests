@@ -13,13 +13,8 @@ namespace PlaywrightTestExamples.Tests
         public async Task MainPageLinksTest(string pageName)
         {
             await LoadMainPage();
-            await ClickLinkByText(pageName);
-            if (pageName == Strings.LoadDelay)
-            
-                await isPageLoaded(pageName+"s");
-           
-            else
-                await isPageLoaded(pageName);
+            await ClickLinkByText(pageName);  
+            await isPageLoaded(pageName);
         }
 
         [Test]

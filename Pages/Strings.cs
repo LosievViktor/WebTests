@@ -6,8 +6,7 @@
         {
                 DynamicId,
                 ClassAttribute,
-                HiddenLayers,
-                LoadDelay,
+                HiddenLayers,                
                 AjaxData,
                 ClientSideDelay,
                 Click,
