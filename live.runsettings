@@ -4,5 +4,8 @@
   <TestRunParameters>
     <Parameter name="Headless" value="false" />
     <Parameter name="Environment" value="http://uitestingplayground.com/" />
+	<Parameter name="Login" value="Viktor" />
+	<Parameter name="Password" value="pwd" />
+	<Parameter name="WrongPassword" value="pwd123" />
   </TestRunParameters>
 </RunSettings>

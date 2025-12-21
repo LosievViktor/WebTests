@@ -2,6 +2,8 @@
 {
     public sealed class Strings
     {
+        public const string PageTitle = "UI Test Automation Playground";
+
         public const string Title = "UI Test Automation Playground";
         public const string DynamicId = "Dynamic ID";
         public const string ClassAttribute = "Class Attribute";
@@ -26,5 +28,8 @@
         public const string AnimatedButton = "Animated Button";
         public const string DisabledInput = "Disabled Input";
         public const string AutoWait = "Auto Wait";
+
+        public const string WrongPasswordMessage = "Invalid username/password";
+        public const string WelcomeUserMessage = "Welcome,";
     }
 }

@@ -2,6 +2,7 @@
 {
     public static class MainPage
     {
+        public static string PageTitle = Strings.PageTitle;
         public static IEnumerable<string> Links => new[]
         {
                 Strings.DynamicId,
