@@ -15,7 +15,7 @@ namespace PlaywrightTestExamples.Tests
 
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = bool.Parse(TestContext.Parameters["Headless"] ?? "false")
+                Headless = bool.Parse(TestContext.Parameters["Headless"])
             });
 
             _page = await _browser.NewPageAsync();
