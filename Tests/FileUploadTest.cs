@@ -6,8 +6,7 @@ namespace PlaywrightTestExamples.Tests
     [TestFixture]
     public sealed class FileUploadTest:BaseTest
     {
-        private const string _filePath = "..\\..\\..\\Resources\\file.txt";
-     
+        private const string _filePath = "..\\..\\..\\Resources\\file.txt";     
 
         [Test]
         [Description("This test go to web site and test File Upload via Drag and Drop.")]

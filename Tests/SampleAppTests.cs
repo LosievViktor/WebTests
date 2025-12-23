@@ -19,9 +19,9 @@ namespace PlaywrightTestExamples.Tests
 
             await LoadPage(Strings.SampleApp);
 
-            await page.LogIn(_login, _password);
+            await page.Login(_login, _password);
 
-            await Assertions.Expect(page.Status).ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
+            await Assertions.Expect(page.StatusLabel).ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
         }
 
         [Test]
@@ -32,9 +32,9 @@ namespace PlaywrightTestExamples.Tests
 
             await LoadPage(Strings.SampleApp);
 
-            await page.LogIn(_login, _wrongPassword);
+            await page.Login(_login, _wrongPassword);
                      
-            await Assertions.Expect(page.Status).ToHaveTextAsync(Strings.WrongPasswordMessage);
+            await Assertions.Expect(page.StatusLabel).ToHaveTextAsync(Strings.WrongPasswordMessage);
         }
     }
 }

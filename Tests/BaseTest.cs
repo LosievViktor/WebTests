@@ -5,7 +5,6 @@ namespace PlaywrightTestExamples.Tests
 {
     public abstract class BaseTest:PageTest
     {
-   
         public async Task LoadMainPage() =>
             await Page.GotoAsync(TestContext.Parameters["Environment"]);
 

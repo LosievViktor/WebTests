@@ -6,16 +6,16 @@ namespace PlaywrightTestExamples.Pages
     {
         public SampleAppPage(IPage page) : base(page) { }
 
-        private ILocator Login => Page.Locator(Locators.txtLogin);
-        private ILocator Password => Page.Locator(Locators.txtPassword);
-        private ILocator Button => Page.Locator(Locators.btnLogin);
-        public  ILocator Status => Page.Locator(Locators.lblStatus);
+        private ILocator LoginTextField => Page.Locator(Locators.txtLogin);
+        private ILocator PasswordTextField => Page.Locator(Locators.txtPassword);
+        private ILocator LoginButton => Page.Locator(Locators.btnLogin);
+        public  ILocator StatusLabel => Page.Locator(Locators.lblStatus);
 
-        public async Task LogIn(string user, string pass)
+        public async Task Login(string user, string pass)
         {
-            await Login.FillAsync(user);
-            await Password.FillAsync(pass);
-            await Button.ClickAsync();
+            await LoginTextField.FillAsync(user);
+            await PasswordTextField.FillAsync(pass);
+            await LoginButton.ClickAsync();
         }
     }
 }

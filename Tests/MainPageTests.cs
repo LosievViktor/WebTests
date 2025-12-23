@@ -14,7 +14,7 @@ namespace PlaywrightTestExamples.Tests
         
 
         [Test]
-        [Description("This test checks main page Title and other atttributes.")]
+        [Description("This test checks main page Title.")]
         public async Task MainPageAttributes()
         {
             await LoadMainPage();
