@@ -1,4 +1,5 @@
-﻿using PlaywrightTestExamples.Pages;
+﻿using Microsoft.Playwright;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -9,22 +10,17 @@ namespace PlaywrightTestExamples.Tests
         [Description("This test go to web site and test Progress Bar.")]
         public async Task ProgressTest()
         {
-            await LoadMainPage();
-            await ClickLinkByText(Strings.ProgressBar);
-            await isPageLoaded(Strings.ProgressBar);
+            var progressBarPage = new ProgressBarPage(Page);
 
-            await _page.Locator(Locators.btnStart).ClickAsync();
-            while (GetValueOfProgressBarAsync().Result < 75) Thread.Sleep(1);
-            await _page.Locator(Locators.btnStop).ClickAsync();
+            await LoadPage(Strings.ProgressBar);
 
-            Assert.IsTrue(GetValueOfProgressBarAsync().Result == 75);
-        }
+            await progressBarPage.Start.ClickAsync();
 
-        private async Task<int> GetValueOfProgressBarAsync() 
-        {
-            var progressBar = _page.Locator(Locators.ProgressBar);
-            string value = await progressBar.GetAttributeAsync(Locators.ProgressBarValue);
-            return int.Parse(value);
+            while (progressBarPage.GetValueOfProgressBar().Result < 75) Thread.Sleep(1);
+
+            await progressBarPage.Start.ClickAsync();
+
+            Assert.IsTrue(progressBarPage.GetValueOfProgressBar().Result == 75);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     public sealed class Strings
     {
+        // Main page
         public static IEnumerable<string> Links => new[]
         {
                 DynamicId,
@@ -55,28 +56,12 @@
         public const string DisabledInput = "Disabled Input";
         public const string AutoWait = "Auto Wait";
 
+        
+        // SampleApp page.
         public const string WrongPasswordMessage = "Invalid username/password";
         public const string WelcomeUserMessage = "Welcome,";
 
+        // Upload page.
         public const string MessageOfUpload = "1 file(s) selected";
-    }
-
-    public sealed class Locators
-    {
-        // Sample App page locators
-        public const string txtLogin = "[name='UserName']";
-        public const string txtPassword = "[name='Password']";
-        public const string btnLogin = "#login";
-        public const string lblStatus = "#loginstatus";
-
-        // Progress Bar page locators
-        public const string btnStart = "#startButton";
-        public const string btnStop = "#stopButton";
-        public const string ProgressBar = "#progressBar";
-        public const string ProgressBarValue = "aria-valuenow";
-
-        // File Upload page locators
-        public const string iFrame = "iframe";
-        public const string inputFile = "#browse";
     }
 }
