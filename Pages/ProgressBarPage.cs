@@ -6,8 +6,8 @@ namespace PlaywrightTestExamples.Pages
     {
         public ProgressBarPage(IPage page) : base(page) { }
 
-        public ILocator Start => Page.Locator(Locators.btnStart);
-        public ILocator Stop => Page.Locator(Locators.btnStop);
+        public ILocator StartButton => Page.Locator(Locators.btnStart);
+        public ILocator StopButton => Page.Locator(Locators.btnStop);
         private ILocator Bar => Page.Locator(Locators.ProgressBar);
 
         public async Task<int> GetValueOfProgressBar()
