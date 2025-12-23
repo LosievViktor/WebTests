@@ -6,51 +6,44 @@ namespace PlaywrightTestExamples.Tests
     [TestFixture]
     public sealed class SampleAppTest:BaseTest
     {
-        private string _login, _password, _wrongPassword;
-
-        [SetUp]
-        public void Setup()
-        {
-            _login = TestContext.Parameters["Login"];
-            _password = TestContext.Parameters["Password"];
-            _wrongPassword = TestContext.Parameters["WrongPassword"];
-        }
+        private string _login = TestContext.Parameters["Login"];
+        private string _password = TestContext.Parameters["Password"];
+        private string _wrongPassword = TestContext.Parameters["WrongPassword"];
+        
 
         [Test]
         [Description("This test go to web site and test login page in Positive case.")]
         public async Task LoginFormPositiveTest()
         {
-            await LoadSampleAppPage();
+            await LoadPage(Strings.SampleApp);
 
             await LogIn(_login, _password);
 
-            await Assertions.Expect(_page.Locator(Locators.lblStatus))
-                .ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
+            await Assertions.Expect(StatusLabel).ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
         }
 
         [Test]
         [Description("This test go to web site and test login page in Negative case.")]
         public async Task LoginFormNegativeTest()
         {
-            await LoadSampleAppPage();
+            await LoadPage(Strings.SampleApp);
 
             await LogIn(_login, _wrongPassword);
                      
-            await Assertions.Expect(_page.Locator(Locators.lblStatus))
-                .ToHaveTextAsync(Strings.WrongPasswordMessage);
+            await Assertions.Expect(StatusLabel).ToHaveTextAsync(Strings.WrongPasswordMessage);
         }
-
-        private async Task LoadSampleAppPage() {
-            await LoadMainPage();
-            await ClickLinkByText(Strings.SampleApp);
-            await isPageLoaded(Strings.SampleApp);
-        }
-
+       
         private async Task LogIn(string user, string pass) 
         {
-            await _page.Locator(Locators.txtLogin).FillAsync(user);
-            await _page.Locator(Locators.txtPassword).FillAsync(pass);
-            await _page.ClickAsync(Locators.btnLogin);
+            await LoginTextField.FillAsync(user);
+            await PasswordTextField.FillAsync(pass);
+            await LoginButton.ClickAsync();
         }
+
+        private ILocator LoginTextField => _page.Locator(Locators.txtLogin);
+        private ILocator PasswordTextField => _page.Locator(Locators.txtPassword);
+        private ILocator LoginButton => _page.Locator(Locators.btnLogin);
+        private ILocator StatusLabel=> _page.Locator(Locators.lblStatus);
+
     }
 }

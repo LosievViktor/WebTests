@@ -6,7 +6,7 @@ namespace PlaywrightTestExamples.Tests
     {
         private IPlaywright _playwright;
         private IBrowser _browser;
-        public IPage _page;
+        public  IPage _page;
 
         [OneTimeSetUp]
         public async Task SetUp()
@@ -31,10 +31,17 @@ namespace PlaywrightTestExamples.Tests
         public async Task LoadMainPage() =>
             await _page.GotoAsync(TestContext.Parameters["Environment"]);
 
-        public async Task ClickLinkByText(string linkText) => 
+        private async Task ClickLinkByText(string linkText) => 
             await _page.GetByRole(AriaRole.Link, new() { Name = linkText }).ClickAsync();
 
-        public async  Task isPageLoaded(string headerText) =>
+        private async  Task isPageLoaded(string headerText) =>
             await Assertions.Expect(_page.Locator("h3")).ToHaveTextAsync(headerText);
+
+        public async Task LoadPage(string chapter)
+        {
+            await LoadMainPage();
+            await ClickLinkByText(chapter);
+            await isPageLoaded(chapter);
+        }
     }
 }

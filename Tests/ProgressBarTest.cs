@@ -1,4 +1,5 @@
-﻿using PlaywrightTestExamples.Pages;
+﻿using Microsoft.Playwright;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -9,21 +10,24 @@ namespace PlaywrightTestExamples.Tests
         [Description("This test go to web site and test Progress Bar.")]
         public async Task ProgressTest()
         {
-            await LoadMainPage();
-            await ClickLinkByText(Strings.ProgressBar);
-            await isPageLoaded(Strings.ProgressBar);
+            await LoadPage(Strings.ProgressBar);
 
-            await _page.Locator(Locators.btnStart).ClickAsync();
-            while (GetValueOfProgressBarAsync().Result < 75) Thread.Sleep(1);
-            await _page.Locator(Locators.btnStop).ClickAsync();
+            await StartButton.ClickAsync();
 
-            Assert.IsTrue(GetValueOfProgressBarAsync().Result == 75);
+            while (GetValueOfProgressBar().Result < 75) Thread.Sleep(1);
+
+            await StopButton.ClickAsync();
+
+            Assert.IsTrue(GetValueOfProgressBar().Result == 75);
         }
+        
+        private ILocator StartButton => _page.Locator(Locators.btnStart);
+        private ILocator StopButton =>  _page.Locator(Locators.btnStop);
+        private ILocator ProgressBar => _page.Locator(Locators.ProgressBar);
 
-        private async Task<int> GetValueOfProgressBarAsync() 
+        private async Task<int> GetValueOfProgressBar()
         {
-            var progressBar = _page.Locator(Locators.ProgressBar);
-            string value = await progressBar.GetAttributeAsync(Locators.ProgressBarValue);
+            string? value = await ProgressBar.GetAttributeAsync(Locators.ProgressBarValue);
             return int.Parse(value);
         }
     }
