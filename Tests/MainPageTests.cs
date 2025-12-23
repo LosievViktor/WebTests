@@ -4,7 +4,7 @@ using PlaywrightTestExamples.Pages;
 namespace PlaywrightTestExamples.Tests
 {
     [TestFixture]
-    public sealed class MainPageTest:BaseTest
+    public sealed class MainPageTests:BaseTest
     {
 
         [Test]
@@ -18,7 +18,7 @@ namespace PlaywrightTestExamples.Tests
         public async Task MainPageAttributes()
         {
             await LoadMainPage();
-            await Assertions.Expect(_page).ToHaveTitleAsync(Strings.PageTitle);
+            await Assertions.Expect(Page).ToHaveTitleAsync(Strings.PageTitle);
         }
     }
 }
