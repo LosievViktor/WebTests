@@ -12,4 +12,4 @@ pwsh bin/Debug/netX/playwright.ps1 install
 
 4. Launch tests via IDE or dotnet test command. Please do not forget to use live.runsettings file.
 
--
+
