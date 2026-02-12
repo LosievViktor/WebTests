@@ -1,5 +1,6 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -12,7 +13,7 @@ namespace PlaywrightTestExamples.Tests
             await Page.GetByRole(AriaRole.Link, new() { Name = linkText }).ClickAsync();
 
         private async  Task isPageLoaded(string headerText) =>
-            await Assertions.Expect(Page.Locator("h3")).ToHaveTextAsync(headerText);
+            await Assertions.Expect(Page.Locator(Locators.headerTag)).ToHaveTextAsync(headerText);
 
         public async Task LoadPage(string chapter)
         {

@@ -2,6 +2,9 @@
 {
     public sealed class Locators
     {
+        // Main page locator
+        public const string headerTag = "h3";
+
         // Sample App page locators
         public const string txtLogin = "[name='UserName']";
         public const string txtPassword = "[name='Password']";
