@@ -10,7 +10,7 @@ namespace PlaywrightTestExamples.Tests
             await Page.GotoAsync(TestContext.Parameters["Environment"]);
 
         private async Task ClickLinkByText(string linkText) => 
-            await Page.GetByRole(AriaRole.Link, new() { Name = linkText }).ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = linkText, Exact=true}).ClickAsync();
 
         private async  Task isPageLoaded(string headerText) =>
             await Assertions.Expect(Page.Locator(Locators.headerTag)).ToHaveTextAsync(headerText);
