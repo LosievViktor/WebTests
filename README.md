@@ -6,11 +6,12 @@ How to launch?
 
 1. Clone repository
 2. Build it via Visual Studio, Rider of other IDE you want.
-3. Install Playwright via execution command :
+3. Install Playwright via execution command on Windows PowerShell :
 
 ```
 
-pwsh bin/Debug/netX/playwright.ps1 install
+cd bin/Debug/net10.0/
+./playwright.ps1 install
 
 ```
 
