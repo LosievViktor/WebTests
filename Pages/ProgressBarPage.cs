@@ -13,7 +13,11 @@ namespace PlaywrightTestExamples.Pages
         public async Task<int> GetValueOfProgressBar()
         {
             string? value = await Bar.GetAttributeAsync(Locators.ProgressBarValue);
-            return int.Parse(value);
+
+            if (!int.TryParse(value, out var progress))
+                throw new InvalidOperationException($"Progress bar value '{value}' is not an integer.");
+
+            return progress;
         }
     }
 }

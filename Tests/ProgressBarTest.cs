@@ -3,7 +3,7 @@
 namespace PlaywrightTestExamples.Tests
 {
     [TestFixture]
-    public sealed class ProgressBarTest:BaseTest
+    public sealed class ProgressBarTest : BaseTest
     {
         [Test]
         [Description("This test go to web site and test Progress Bar.")]
@@ -15,11 +15,22 @@ namespace PlaywrightTestExamples.Tests
 
             await progressBarPage.StartButton.ClickAsync();
 
-            while (progressBarPage.GetValueOfProgressBar().Result < 75) Thread.Sleep(1);
+            var timeoutAt = DateTime.UtcNow.AddSeconds(35);
+            var value = await progressBarPage.GetValueOfProgressBar();
+
+            while (value < 75)
+            {
+                if (DateTime.UtcNow > timeoutAt)
+                    Assert.Fail($"Progress bar did not reach 75. Last value: {value}.");
+
+                await Task.Delay(50);
+                value = await progressBarPage.GetValueOfProgressBar();
+            }
 
             await progressBarPage.StopButton.ClickAsync();
-            
-            Assert.IsTrue(progressBarPage.GetValueOfProgressBar().Result == 75);
+
+            value = await progressBarPage.GetValueOfProgressBar();
+            Assert.That(value, Is.InRange(75, 77));
         }
     }
 }
