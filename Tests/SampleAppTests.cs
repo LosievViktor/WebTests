@@ -21,7 +21,10 @@ namespace PlaywrightTestExamples.Tests
 
             await page.Login(_login, _password);
 
-            await Assertions.Expect(page.StatusLabel).ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
+            await Assertions.Expect(
+                    page.StatusLabel,
+                    $"Successful login should welcome \"{_login}\".")
+                .ToHaveTextAsync($"{Strings.WelcomeUserMessage} {_login}!");  
         }
 
         [Test]
@@ -34,7 +37,10 @@ namespace PlaywrightTestExamples.Tests
 
             await page.Login(_login, _wrongPassword);
                      
-            await Assertions.Expect(page.StatusLabel).ToHaveTextAsync(Strings.WrongPasswordMessage);
+            await Assertions.Expect(
+                    page.StatusLabel,
+                    $"Wrong password should be rejected with \"{Strings.WrongPasswordMessage}\".")
+                .ToHaveTextAsync(Strings.WrongPasswordMessage);
         }
     }
 }

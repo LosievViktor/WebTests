@@ -1,4 +1,5 @@
-﻿using PlaywrightTestExamples.Pages;
+﻿using Microsoft.Playwright;
+using PlaywrightTestExamples.Pages;
 
 namespace PlaywrightTestExamples.Tests
 {
@@ -15,9 +16,15 @@ namespace PlaywrightTestExamples.Tests
 
             var uploadPage = new FileUploadPage(Page);
 
+            await Assertions.Expect(uploadPage.FileInput, "File input inside the upload frame should be ready.")
+                .ToBeAttachedAsync();
+
             await uploadPage.Upload(_filePath);
 
-            await uploadPage.AssertUploaded();
+            await Assertions.Expect(
+                    uploadPage.SelectedFilesLabel,
+                    $"Upload should confirm selection with \"{Strings.MessageOfUpload}\".")
+                .ToBeVisibleAsync();
         }
     }
 }

@@ -18,7 +18,8 @@ namespace PlaywrightTestExamples.Tests
         public async Task MainPageAttributes()
         {
             await LoadMainPage();
-            await Assertions.Expect(Page).ToHaveTitleAsync(Strings.PageTitle);
+            await Assertions.Expect(Page, $"Main page title should be \"{Strings.PageTitle}\".")
+                .ToHaveTitleAsync(Strings.PageTitle);
         }
     }
 }

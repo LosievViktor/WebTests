@@ -12,8 +12,11 @@ namespace PlaywrightTestExamples.Tests
         private async Task ClickLinkByText(string linkText) => 
             await Page.GetByRole(AriaRole.Link, new() { Name = linkText, Exact=true}).ClickAsync();
 
-        private async  Task isPageLoaded(string headerText) =>
-            await Assertions.Expect(Page.Locator(Locators.headerTag)).ToHaveTextAsync(headerText);
+        private async Task isPageLoaded(string headerText) =>
+            await Assertions.Expect(
+                    Page.Locator(Locators.headerTag),
+                    $"Chapter \"{headerText}\" should finish loading.")
+                .ToHaveTextAsync(headerText);
 
         public async Task LoadPage(string chapter)
         {
